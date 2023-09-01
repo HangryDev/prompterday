@@ -67,10 +67,10 @@ html = '''
 active_connections = []
 
 # credentials, S3 bucket name
-aws_access_key = 'AKIATEGSP62QHJ5PLZL5'
-aws_secret_key = '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'
+aws_access_key = 
+aws_secret_key = 
 bucket_name = 'cnackxml'
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = 
 openai.api_key = OPENAI_API_KEY
 
 
