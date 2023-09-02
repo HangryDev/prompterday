@@ -35,7 +35,7 @@ html = '''
     </div>
 
     <script>
-        const socket = new WebSocket("ws://localhost:8000/ws");
+        const socket = new WebSocket("ws://ec2-3-34-181-29.ap-northeast-2.compute.amazonaws.com:8000/ws");
         const messageInput = document.getElementById("messageInput");
         const sendButton = document.getElementById("sendButton");
         const chatHistory = document.getElementById("chatHistory");
