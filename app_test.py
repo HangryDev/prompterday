@@ -176,8 +176,14 @@ def get_secret():
 
     # Decrypts secret using the associated KMS key.
     secret = get_secret_value_response['SecretString']
+    # Parse the JSON string
+    secret_jsonify = json.loads(secret)
+    print(secret_jsonify)
 
-    return secret
+    # Extract the value associated with the "API_KEY" key
+    api_key = secret_jsonify.get("OPENAI_API_KEY", None)
+    print(api_key)
+    return api_key
 
 
 # Retrieve the API key from AWS Secrets Manager
