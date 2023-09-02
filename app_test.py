@@ -177,6 +177,8 @@ def get_secret():
     # Decrypts secret using the associated KMS key.
     secret = get_secret_value_response['SecretString']
 
+    return secret
+
 
 # Retrieve the API key from AWS Secrets Manager
 OPENAI_API_KEY = get_secret()
@@ -184,7 +186,8 @@ OPENAI_API_KEY = get_secret()
 if OPENAI_API_KEY:
     print(f"Retrieved API key: {OPENAI_API_KEY}")
 else:
-    print("Failed to retrieve the API key.")
+    print("Failed to retrieve the API key.") 
+    print(OPENAI_API_KEY)
 
 # credentials, S3 bucket name
 bucket_name = 'cnackxml'
