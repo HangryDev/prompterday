@@ -66,13 +66,7 @@ html = '''
 # Store active WebSocket connections
 active_connections = []
 
-# credentials, S3 bucket name
-amazonws_access_key = 
-amazonws_secret_key = 
-bucket_name = 'cnackxml'
-OPENAI_API_KEY = 
-openai.api_key = OPENAI_API_KEY
-
+# credentials, S3 bucket name -> 아래로 옮김! store manager 사용함
 
 # File save - temporary
 # Get the current datetime as a string
@@ -137,7 +131,7 @@ def generate_analysis_report(results):
 
     # Initialize S3 client
     #local_file_path = 'C:\Users\eight\OneDrive\바탕 화면\LLMProject'
-    #s3 = boto3.client('s3', aws_access_key_id=amazonws_access_key, aws_secret_access_key=amazonws_secret_key)
+    #s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
     #s3_key = f'conversation_results_{dt_time}.json'
     #s3.upload_file(local_file_path, bucket_name, s3_key)
 
@@ -147,7 +141,7 @@ def generate_analysis_report(results):
 # Background task to check for idle connections and close them
 async def check_idle_connections():
     while True:
-        await asyncio.sleep(30)  # Check every 180 seconds
+        await asyncio.sleep(300)  # Check every 180 seconds
         
         for connection in active_connections:
             try:
@@ -155,6 +149,42 @@ async def check_idle_connections():
                 await connection.close()
             except:
                 pass
+
+def get_secret(secret_name):
+    try:
+        # Create a Boto3 client for Secrets Manager using the instance profile
+        secrets_manager_client = boto3.client('secretsmanager')
+
+        # Retrieve the secret value from AWS Secrets Manager
+        response = secrets_manager_client.get_secret_value(SecretId=secret_name)
+
+        # Parse the JSON secret data
+        secret_data = json.loads(response['SecretString'])
+
+        # Extract the API key from the secret data
+        api_key = secret_data['api_key']
+
+        return api_key
+
+    except Exception as e:
+        print(f"Error retrieving secret '{secret_name}': {str(e)}")
+        return None
+
+# Specify the name of the secret
+secret_name = 'OPENAI_API_KEY'
+
+# Retrieve the API key from AWS Secrets Manager
+OPENAI_API_KEY = get_secret(secret_name)
+
+if OPENAI_API_KEY:
+    print(f"Retrieved API key: {OPENAI_API_KEY}")
+else:
+    print("Failed to retrieve the API key.")
+
+# credentials, S3 bucket name
+bucket_name = 'cnackxml'
+openai.api_key = OPENAI_API_KEY
+
 
 ### decorator 시작
 @app.get("/")
@@ -196,7 +226,7 @@ async def chat_endpoint(websocket: WebSocket):
 
         # Finish the chat and generate the analysis report
         print("대화를 종료합니다.")
-        generate_analysis_report(conversation)  
+        #generate_analysis_report(conversation)  
 
 
 # Report endpoint
@@ -214,6 +244,3 @@ async def startup_event():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
-
-
