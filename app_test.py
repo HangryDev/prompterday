@@ -8,6 +8,7 @@ import os
 import uvicorn
 import boto3
 from datetime import datetime
+from botocore.exceptions import ClientError
 
 app = FastAPI()
 
@@ -150,31 +151,35 @@ async def check_idle_connections():
             except:
                 pass
 
-def get_secret(secret_name):
+
+
+def get_secret():
+
+    secret_name = "OpenAIapi"
+    region_name = "ap-northeast-2"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
     try:
-        # Create a Boto3 client for Secrets Manager using the instance profile
-        secrets_manager_client = boto3.client('secretsmanager')
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        # For a list of exceptions thrown, see
+        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        raise e
 
-        # Retrieve the secret value from AWS Secrets Manager
-        response = secrets_manager_client.get_secret_value(SecretId=secret_name)
+    # Decrypts secret using the associated KMS key.
+    secret = get_secret_value_response['SecretString']
 
-        # Parse the JSON secret data
-        secret_data = json.loads(response['SecretString'])
-
-        # Extract the API key from the secret data
-        api_key = secret_data['api_key']
-
-        return api_key
-
-    except Exception as e:
-        print(f"Error retrieving secret '{secret_name}': {str(e)}")
-        return None
-
-# Specify the name of the secret
-secret_name = 'OPENAI_API_KEY'
 
 # Retrieve the API key from AWS Secrets Manager
-OPENAI_API_KEY = get_secret(secret_name)
+OPENAI_API_KEY = get_secret()
 
 if OPENAI_API_KEY:
     print(f"Retrieved API key: {OPENAI_API_KEY}")
@@ -244,3 +249,6 @@ async def startup_event():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+
