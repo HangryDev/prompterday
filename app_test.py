@@ -67,8 +67,8 @@ html = '''
 active_connections = []
 
 # credentials, S3 bucket name
-aws_access_key = 
-aws_secret_key = 
+amazonws_access_key = 
+amazonws_secret_key = 
 bucket_name = 'cnackxml'
 OPENAI_API_KEY = 
 openai.api_key = OPENAI_API_KEY
@@ -137,7 +137,7 @@ def generate_analysis_report(results):
 
     # Initialize S3 client
     #local_file_path = 'C:\Users\eight\OneDrive\바탕 화면\LLMProject'
-    #s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
+    #s3 = boto3.client('s3', aws_access_key_id=amazonws_access_key, aws_secret_access_key=amazonws_secret_key)
     #s3_key = f'conversation_results_{dt_time}.json'
     #s3.upload_file(local_file_path, bucket_name, s3_key)
 
