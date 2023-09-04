@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.nav-header {
+  background-color: #fff;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-logo {
+  white-space: nowrap;
+}
+
+.chat-container {
+  width: 80%;
+  margin: auto;
+  position: relative;
+  height: calc(100vh - 80px);
+}

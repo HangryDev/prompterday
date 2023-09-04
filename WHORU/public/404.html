@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Not Found</title>
+  </head>
+  <body>
+    <script>
+        const url = window.location.href;
+        window.location.href = url.replace(/\/$/, "");
+    </script>
+  </body>
+</html>

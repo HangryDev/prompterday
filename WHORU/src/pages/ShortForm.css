@@ -1,0 +1,71 @@
+/* CSS 파일 또는 스타일 컴포넌트로 작성 가능 */
+
+.short-form-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.submit-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-buttons button.primary {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+.submit-buttons button.primary:hover {
+  background-color: #40a9ff;
+}
+
+.submit-buttons button.secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-left: 10px;
+}
+
+.submit-buttons button.secondary:hover {
+  background-color: #ccc;
+}
