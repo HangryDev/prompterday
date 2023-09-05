@@ -28,9 +28,9 @@ export const InMindSearch = () => {
 
     return (
         <>
-            <h2>오늘의 마인드풀 컨텐츠 추천</h2>
+            <h2>인마인드 탐색</h2>
             <Content className="content">
-                <h3>추천 리스트</h3>
+                <h3>오늘의 인마인드 컨텐츠 추천</h3>
                 <div className="results-container">
                     <Card
                         hoverable

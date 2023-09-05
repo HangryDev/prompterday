@@ -1,7 +1,7 @@
 /* CSS 파일 또는 스타일 컴포넌트로 작성 가능 */
 
 .short-form-container {
-  max-width: 600px;
+  max-width: 100%; /* 원하는 최대 너비로 조절 */
   margin: 100px auto;
   padding: 20px;
   background-color: #f7f7f7;

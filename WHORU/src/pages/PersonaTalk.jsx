@@ -21,9 +21,9 @@ export const PersonaTalk = () => {
           <div className="content-container">
             <div className="chat-container2">
               <h2 className='chat-title'>
-                페르소나 AI 메이커
+                페르소나 톡
               </h2>
-              <h3 className='chat-title'>나를 닮은 페르소나 ai를 대화로 만들어 보세요!</h3>
+              {/* <h3 className='chat-title'>나를 닮은 페르소나 ai를 대화로 만들어 보세요!</h3> */}
               <Counseling />
             </div>
           </div>

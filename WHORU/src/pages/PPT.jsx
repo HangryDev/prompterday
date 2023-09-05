@@ -4,9 +4,6 @@ import { SmileOutlined } from '@ant-design/icons';
 import './PPT.css';
 import { Tile } from './Tile';
 
-const { Header, Content } = Layout;
-const { Title, Paragraph } = Typography;
-
 export const ProfessionalPsychologicalTest = () => {
   const [form] = Form.useForm();
   const [result, setResult] = useState(null);

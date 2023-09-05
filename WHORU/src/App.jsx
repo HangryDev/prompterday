@@ -29,7 +29,7 @@ function App() {
     <Router basename={process.env.PUBLIC_URL}>
       <Layout>
         <Header className="nav-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1 className="app-logo">MIND STEP</h1>
+          <h1 className="app-logo">쓰니</h1>
           <Menu theme="light" mode="horizontal" selectedKeys={[selectedMenuKey]} onSelect={handleMenuSelect} disabledOverflow={true}>
             <Menu.Item key="/" icon={<CheckSquareOutlined />}>
               <Link to="/">All Menu</Link>
@@ -44,7 +44,7 @@ function App() {
               <Link to="/counseling">전문 심리 검사</Link>
             </Menu.Item>
             <Menu.Item key="/in-mind-search" icon={<CheckCircleOutlined />}>
-              <Link to="/in-mind-search">인마인드 분석</Link>
+              <Link to="/in-mind-search">인마인드 탐색</Link>
             </Menu.Item>
           </Menu>
         </Header>

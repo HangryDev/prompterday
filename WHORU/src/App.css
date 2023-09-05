@@ -21,8 +21,8 @@
 }
 
 .chat-container {
-  width: 80%;
+  width: 90%;
   margin: auto;
   position: relative;
-  height: calc(100vh - 80px);
+  /* height: calc(100vh - 80px); */
 }
